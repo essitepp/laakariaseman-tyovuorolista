@@ -3,12 +3,21 @@ Järjestelmällä voidaan laatia lääkäriaseman työvuorolistoja. Lääkärias
 Järjestelmä hyväksyy vain sellaiset työvuorolistat, jotka täyttävät vaaditut henkilöstövahvuudet. Lisäksi jokaisella työntekijällä on määritelty päivittäinen ja viikoittainen maksimityötuntimäärä, joiden ylitykset järjestelmä estää.
 
 Järjestelmän toiminnot:
+
 -Kirjautuminen
+
 -Kiireellisyysluokkien luominen ja muokkaaminen
+
 -Henkilöstövahvuuskalenterin tekeminen ja muokkaaminen
+
 -Työvuorolistan tekeminen ja muokkaaminen
+
 -Henkilökohtaisen työvuorolistan listaus
+
 -Työvuorolistan listaus
+
 -Työntekijäkohtainen työraportti tehdyistä työtunneista tietyllä aikavälillä
+
 -Työntekijän tekemien työtuntien listaus kiireellisyysluokittain
+
 -Työvuorolistan ylimiehityksen raportointi
