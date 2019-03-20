@@ -1,4 +1,6 @@
-# Aihekuvaus
+# Lääkäriaseman työvuorolista
+
+## Aihekuvaus
 
 Järjestelmällä voidaan laatia lääkäriaseman työvuorolistoja. Lääkäriaseman henkilöstö jaetaan kolmeen luokkaan: lääkärit, sairaanhoitajat ja perushoitajat. Lääkäriaseman aukioloajat jaetaan tarvittavan henkilöstövahvuuden mukaan eri kiireellisyysluokkiin. Jokaiselle kiireellisyysluokalle määritellään minimivahvuus, eli kuinka monta kunkin henkilöstöluokan työntekijää on oltava töissä. Minimivahvuutta laskettaessa ylempi työntekijä voi korvata alemman, eli lääkäri voi olla sairaanhoitaja tai perushoitaja, ja sairaanhoitaja voi olla perushoitaja. Jokainen aseman aukiolotunti kuuluu johonkin kiireellisyysluokkaan.
 
