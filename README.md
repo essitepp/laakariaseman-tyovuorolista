@@ -26,7 +26,8 @@ Järjestelmän toiminnot:
 
 - Työvuorolistan ylimiehityksen raportointi
 
+
 ## Dokumentaatio
 
-[Käyttötapaukset](https://github.com/essitepp/laakariaseman-tyovuorolista/blob/master/documentation/usecases.txt)
+[Käyttötapaukset](https://github.com/essitepp/laakariaseman-tyovuorolista/blob/master/documentation/usecases.txt)  
 [Tietokantakaavio](https://github.com/essitepp/laakariaseman-tyovuorolista/blob/master/documentation/diagram.txt)
