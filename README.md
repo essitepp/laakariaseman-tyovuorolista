@@ -31,3 +31,8 @@ Järjestelmän toiminnot:
 
 [Käyttötapaukset](https://github.com/essitepp/laakariaseman-tyovuorolista/blob/master/documentation/usecases.md)  
 [Tietokantakaavio](https://github.com/essitepp/laakariaseman-tyovuorolista/blob/master/documentation/diagram.md)
+
+
+## Sovellus Herokussa
+
+[Lääkäriaseman työvuorolista](https://laakariaseman-tyovuorolista.herokuapp.com/)
