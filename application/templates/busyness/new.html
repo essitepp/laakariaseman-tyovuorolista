@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<form method="POST" action="{{ url_for('busyness_create') }}">
+    <p>Kiireellisyysluokan nimi</p>
+    <input type="text" name="name"/>
+    <p>Lääkäreitä</p>
+    <input type="text" name="laakareita"/>
+    <p>Sairaanhoitajia</p>
+    <input type="text" name="sairaanhoitajia"/>
+    <p>Perushoitajia</p>
+    <input type="text" name="perushoitajia"/>
+    <br>
+    <br>
+    <input type="submit" value="Lisää"/>
+</form>
+{% endblock %}

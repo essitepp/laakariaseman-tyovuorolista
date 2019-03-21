@@ -6,6 +6,11 @@
   </head>
 
   <body>
+    <ul>
+      <li><a href="{{ url_for('busyness_index') }}">Lista kiireellisyysluokista</a></li>
+      <li><a href="{{ url_for('busyness_form') }}">Lisää kiireellisyysluokka</a></li>
+    </ul>
+
     {% block body %}
       <p>
         Content.
