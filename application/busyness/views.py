@@ -1,5 +1,7 @@
-from application import app, db
 from flask import render_template, request, redirect, url_for
+from flask_login import login_required
+
+from application import app, db
 from application.busyness.models import Busyness
 from application.busyness.forms import BusynessForm
 
@@ -9,10 +11,12 @@ def busyness_index():
 
 
 @app.route("/busyness/new/")
+@login_required
 def busyness_form():
     return render_template("busyness/new.html", form = BusynessForm())
 
 @app.route("/busyness/", methods=["POST"])
+@login_required
 def busyness_create():
     form = BusynessForm(request.form)
 

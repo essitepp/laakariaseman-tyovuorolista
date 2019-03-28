@@ -2,7 +2,7 @@ from application import db
 
 class Busyness(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(40))
+    name = db.Column(db.String(144))
     laakareita = db.Column(db.Integer)
     sairaanhoitajia = db.Column(db.Integer)
     perushoitajia = db.Column(db.Integer)
