@@ -18,6 +18,9 @@ from application import views
 from application.busyness import models
 from application.busyness import views
 
+from application.hour import models
+from application.hour import views
+
 from application.auth import models
 from application.auth import views
 

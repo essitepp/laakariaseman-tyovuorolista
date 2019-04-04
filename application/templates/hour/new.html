@@ -1,0 +1,75 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<form method="POST" action="{{ url_for('hour_create') }}">
+  <table>
+    <tr>
+      <td>
+        {{ form.date.label }}
+      </td>
+    </tr>
+    <tr>
+      <td>
+        {{ form.date }}
+      </td>
+      <td>
+        <ul>
+          {% for error in form.date.errors %}
+          <li>{{ error }}</li>
+          {% endfor %}
+        </ul>
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        {{ form.start.label }}
+      </td>
+    </tr>
+    <tr>
+      <td>
+        {{ form.start }}
+      </td>
+      <td>
+        <ul>
+          {% for error in form.start.errors %}
+          <li>{{ error }}</li>
+          {% endfor %}
+        </ul>
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        {{ form.end.label }}
+      </td>
+    </tr>
+    <tr>
+      <td>
+        {{ form.end }}
+      </td>
+      <td>
+        <ul>
+          {% for error in form.end.errors %}
+          <li>{{ error }}</li>
+          {% endfor %}
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        {{ form.busyness_id.label }}
+      </td>
+    </tr>
+    <tr>
+      <td>
+        {{ form.busyness_id }}
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <input type="submit" value="Tallenna"/>
+      </td>
+    </tr>
+</form>
+{% endblock %}

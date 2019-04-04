@@ -7,8 +7,15 @@ class Busyness(db.Model):
     sairaanhoitajia = db.Column(db.Integer)
     perushoitajia = db.Column(db.Integer)
 
+
     def __init__(self, name, laakareita, sairaanhoitajia, perushoitajia):
         self.name = name
         self.laakareita = laakareita
         self.sairaanhoitajia = sairaanhoitajia
         self.perushoitajia = perushoitajia
+
+    def get_id(self):
+       return self.id
+
+    def get_name(self):
+        return self.name
