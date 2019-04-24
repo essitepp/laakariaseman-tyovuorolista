@@ -8,7 +8,11 @@ from application.busyness.models import Busyness
 
 @app.route("/hour", methods=["GET"])
 def hour_index():
-    return render_template("hour/list.html", hourList = Hour.query.all())
+    hours = Hour.query.all()
+    hourList = []
+    for hour in hours:
+        hourList.append({"hour":hour, "busyness":hour.getBusyness(hour.busyness_id)})
+    return render_template("hour/list.html", hourList = hourList)
 
 
 @app.route("/hour/new/")
@@ -27,6 +31,7 @@ def hour_create():
 
     for time in range(form.start.data, form.end.data):
         h = Hour(form.date.data, time)
+        h.busyness_id = form.busyness_id.data
         db.session().add(h)
         db.session().commit()
 

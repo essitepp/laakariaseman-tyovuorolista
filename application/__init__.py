@@ -18,8 +18,18 @@ from application import views
 from application.busyness import models
 from application.busyness import views
 
+
+try:
+    db.create_all()
+except:
+    pass
+
+
 from application.hour import models
 from application.hour import views
+
+from application.employee import models
+from application.employee import views
 
 from application.auth import models
 from application.auth import views
@@ -43,3 +53,5 @@ try:
     db.create_all()
 except:
     pass
+
+

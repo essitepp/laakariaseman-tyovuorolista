@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+
+{% block body %}
+  <table>
+    <tr>
+      <th>Nimi</th>
+      <th>Henkilöstöluokka</th>
+      <th>Työtunteja päivässä</th>
+      <th>Työtunteja viikossa</th>
+    </tr>
+    {% for employee in employeeList %}
+    <tr>
+      <td>{{ employee.name }}</td>
+      <td>{{ employee.role }}</td>
+      <td>{{ employee.hoursPerDay }}</td>
+      <td>{{ employee.hoursPerWeek }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+
+
+{% endblock %}

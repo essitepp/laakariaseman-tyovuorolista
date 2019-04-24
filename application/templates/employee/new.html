@@ -1,0 +1,82 @@
+ {% extends "layout.html" %}
+
+ {% block body %}
+<form method="POST" action="{{ url_for('employee_create') }}">
+  <table>
+    <tr>
+      <td>
+        {{ form.name.label }}
+      </td>
+    </tr>
+    <tr>
+      <td>
+        {{ form.name }}
+      </td>
+      <td>
+        <ul>
+          {% for error in form.name.errors %}
+          <li>{{ error }}</li>
+          {% endfor %}
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        {{ form.role.label }}
+      </td>
+    </tr>
+    <tr>
+      <td>
+        {{ form.role }}
+      </td>
+      <td>
+        <ul>
+          {% for error in form.role.errors %}
+          <li>{{ error }}</li>
+          {% endfor %}
+        </ul>
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        {{ form.day.label }}
+      </td>
+    </tr>
+    <tr>
+      <td>
+        {{ form.day }}
+      </td>
+      <td>
+        <ul>
+          {% for error in form.day.errors %}
+          <li>{{ error }}</li>
+          {% endfor %}
+        </ul>
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        {{ form.week.label }}
+      </td>
+    </tr>
+    <tr>
+      <td>
+        {{ form.week }}
+      </td>
+      <td>
+        <ul>
+          {% for error in form.week.errors %}
+          <li>{{ error }}</li>
+          {% endfor %}
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <input type="submit" value="Tallenna"/>
+      </td>
+    </tr>
+</form>
+{% endblock %}

@@ -11,4 +11,15 @@ class Hour(db.Model):
         self.date = date
         self.start = start
 
+    @staticmethod
+    def getBusyness(busyness=0):
 
+        stmt = text("SELECT Busyness.name FROM Busyness WHERE Busyness.id = :busyness").params(busyness=busyness)
+        res = db.engine.execute(stmt)
+
+        for row in res:
+            return row[0]
+
+    @staticmethod
+    def hoursMissingEmployees():
+        return 1

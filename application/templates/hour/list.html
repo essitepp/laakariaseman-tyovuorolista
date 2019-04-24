@@ -6,11 +6,12 @@
       <th>Päivämäärä</th>
       <th>Kellonaika</th>
       <th>Kiireellisyysluokka</th>
-    {% for hour in hourList %}
+    </tr>
+    {% for h in hourList %}
     <tr>
-      <td>{{ hour.date }}</td>
-      <td>{{ hour.start }}-{{ hour.start + 1 }}</td>
-      <td></td>
+      <td>{{ h.hour.date }}</td>
+      <td>{{ h.hour.start }}-{{ h.hour.start + 1 }}</td>
+      <td>{{ h.busyness }}</td>
     </tr>
     {% endfor %}
  </table>  
