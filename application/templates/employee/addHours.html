@@ -1,0 +1,63 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<form method="POST" action="{{ url_for('employee_addHours') }}">
+  <table>
+    <tr>
+      <td>
+        {{ form.date.label }}
+      </td>
+    </tr>
+    <tr>
+      <td>
+        {{ form.date }}
+      </td>
+      <td>
+        <ul>
+          {% for error in form.date.errors %}
+          <li>{{ error }}</li>
+          {% endfor %}
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        {{ form.start.label }}
+      </td>
+    </tr>
+    <tr>
+      <td>
+        {{ form.start }}
+      </td>
+      <td>
+        <ul>
+          {% for error in form.start.errors %}
+          <li>{{ error }}</li>
+          {% endfor %}
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        {{ form.employee.label }}
+      </td>
+    </tr>
+    <tr>
+      <td>
+        {{ form.employee }}
+      </td>
+      <td>
+        <ul>
+          {% for error in form.employee.errors %}
+          <li>{{ error }}</li>
+          {% endfor %}
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <input type="submit" value="Tallenna"/>
+      </td>
+    </tr>
+</form>
+{% endblock %}

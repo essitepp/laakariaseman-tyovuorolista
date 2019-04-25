@@ -28,8 +28,10 @@ except:
 from application.hour import models
 from application.hour import views
 
+
 from application.employee import models
 from application.employee import views
+
 
 from application.auth import models
 from application.auth import views

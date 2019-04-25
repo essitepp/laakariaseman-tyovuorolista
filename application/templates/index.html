@@ -4,4 +4,21 @@
   <p>
     Hello world!
   </p>
+
+{% if missing_employees is defined %}
+<p>
+  Aukiolotunneista puuttuvat työntekijät:
+</p>
+
+<ul>
+  {% for h in missing_employees %}
+  <li>
+    {{h.date}} {{h.time}} lääkärit: {{h.l}} sairaanhoitajat: {{h.s}} perushoitajat: {{h.p}}
+  </li>
+  {% endfor %}
+</ul>
+
+{% endif %}
+
+
 {% endblock %}

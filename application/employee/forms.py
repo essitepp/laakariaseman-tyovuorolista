@@ -1,6 +1,7 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, IntegerField, SelectField, validators
+from wtforms import StringField, IntegerField, SelectField, RadioField, DateField, validators
 from application import db
+from application.employee.models import Employee
 
 class EmployeeForm(FlaskForm):
     name = StringField("Nimi", [validators.InputRequired()])

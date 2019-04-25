@@ -11,12 +11,10 @@ def busyness_index():
 
 
 @app.route("/busyness/new/")
-@login_required
 def busyness_form():
     return render_template("busyness/new.html", form = BusynessForm())
 
 @app.route("/busyness/", methods=["POST"])
-@login_required
 def busyness_create():
     form = BusynessForm(request.form)
 

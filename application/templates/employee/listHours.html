@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+
+{% block body %}
+  <table>
+    <tr>
+      <th>Päivämäärä</th>
+      <th>Kellonaika</th>
+    </tr>
+    {% for h in hourList %}
+    <tr>
+      <td>{{ h.date }}</td>
+      <td>{{ h.time }}-{{ h.time + 1 }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+
+{% endblock %}
