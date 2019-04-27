@@ -36,3 +36,29 @@ def hour_create():
         db.session().commit()
 
     return redirect(url_for("hour_index"))
+
+@app.route("/missingemployees/", methods=["GET"])
+def missingEmployees_index():
+    list = []
+    dateList = Hour.listDates()
+    for date in dateList:
+        hourList = []
+        hours = Hour.getTimes(date)
+        for hour in hours:
+            missing = Hour.missingEmployees(Hour.findHour(date, hour))
+            hourList.append({"time":hour, "employees":missing})
+        list.append({"date":date, "times":hourList})
+    return render_template("hour/missingEmployees.html", missing_employees=list)
+
+@app.route("/shifts/", methods=["GET", "POST"])
+def listShifts():
+    shiftList = []
+    dateList = Hour.listDates()
+    for date in dateList:
+        hourList = []
+        hours = Hour.getTimes(date)
+        for hour in hours:
+            employees = Hour.listEmployees(Hour.findHour(date, hour))
+            hourList.append({"time":hour, "employees":employees})
+        shiftList.append({"date":date, "times":hourList})
+    return render_template("hour/shifts.html", shiftList=shiftList)

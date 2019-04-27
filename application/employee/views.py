@@ -42,13 +42,14 @@ def employee_addHours():
         return render_template("employee/addHours.html", form = form)
 
     e = db.session.query(Employee).get(form.employee.data)
-    hour_id = Hour.findHour(form.date.data, form.start.data)
-    h = db.session.query(Hour).get(hour_id)
-    e.hours.append(h)
+    for time in range(form.start.data, form.end.data):
+        hour_id = Hour.findHour(form.date.data, time)
+        h = db.session.query(Hour).get(hour_id)
+        e.hours.append(h)
     db.session().add(e)
     db.session().commit()
 
-    return redirect(url_for("employee_index"))
+    return redirect(url_for("listShifts"))
 
 @app.route("/employee/select")
 def employee_select():

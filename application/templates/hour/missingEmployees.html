@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<p>Aukiolotunneista puuttuvat työntekijät:</p>
+{% if missing_employees is defined %}
+
+<ul>
+{% for i in missing_employees %}
+  <li>{{ i.date }}</li>
+  <table>
+  {% for t in i.times %}
+    <tr>
+      <td>klo {{ t.time }}-{{ t.time + 1 }}</td>
+      <td>lääkärit: {{ t.employees.l }}</td>
+      <td>sairaanhoitajat: {{ t.employees.s }}</td>
+      <td>perushoitajat: {{ t.employees.p }}</td>
+    </tr>
+  {% endfor %}
+  </table>
+{% endfor %}
+</ul>
+{% else %}
+<p>Ei puuttuvia työntekijöitä</p>
+{% endif %}
+{% endblock %}    

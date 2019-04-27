@@ -9,24 +9,42 @@
   <body>
     
     <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
-      <a class="navbar-brand" href="#">Työvuorojärjestelmä</a>
+      <a class="navbar-brand" href="{{ url_for('index') }}">Työvuorojärjestelmä</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarCollapse">
         <ul class="navbar-nav mr-auto">
-          <li class="nav-item">
-            <a class="nav-link" href="{{ url_for('busyness_index') }}">Lista kiireellisyysluokista</a>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Kiireellisyysluokat</a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="{{ url_for('busyness_index') }}">Lista kiireellisyysluokista</a>
+              <a class="dropdown-item" href="{{ url_for('busyness_form') }}">Lisää kiireellisyysluokka</a>
+            </div>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{{ url_for('busyness_form') }}">Lisää kiireellisyysluokka</a>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Aukiolotunnit</a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="{{ url_for('hour_index') }}">Lista aukiolotunneista</a>
+              <a class="dropdown-item" href="{{ url_for('hour_form') }}">Lisää aukiolotunteja</a>
+            </div>
           </li>
-         <li class="nav-item">
-           <a class="nav-link" href="{{ url_for('hour_index') }}">Lista aukiolotunneista</a>
-         </li>
-         <li class="nav-item">
-           <a class="nav-link" href="{{ url_for('hour_form') }}">Määritä aukiolotunteja</a>
-         </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Työntekijät</a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="{{ url_for('employee_index') }}">Lista työntekijöistä</a>
+              <a class="dropdown-item" href="{{ url_for('employee_form') }}">Lisää työntekijöitä</a>
+              <a class="dropdown-item" href="{{ url_for('employee_select') }}">Työntekijäkohtaiset työtunnit</a>
+            </div>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Työvuorot</a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="{{ url_for('missingEmployees_index') }}">Työntekijöitä tarvitsevat vuorot</a>
+              <a class="dropdown-item" href="{{ url_for('employee_hourform') }}">Lisää työvuoroja</a>
+              <a class="dropdown-item" href="{{ url_for('listShifts') }}">Lista työvuoroista</a>
+            </div>
+          </li>
         </ul>
         <div class="form-inline mt-2 mt-md-0">
           {% if current_user.is_authenticated %}
