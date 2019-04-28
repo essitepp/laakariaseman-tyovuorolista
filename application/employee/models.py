@@ -34,4 +34,8 @@ class Employee(db.Model):
             response.append({"date":row[0], "time":row[1]})
         return response
 
-
+    def getName(id):
+        stmt = text("SELECT Employee.name FROM Employee WHERE Employee.id = :id").params(id=id)
+        res = db.engine.execute(stmt)
+        for row in res:
+            return row[0]

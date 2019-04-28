@@ -61,6 +61,5 @@ def employee_listHours():
 
     if not form.validate():
         return render_template("employee/select.html", form = form)
-
-    hourList = Employee.findHours(form.employee.data)
-    return render_template("employee/listHours.html", hourList=hourList)
+    hourList = Hour.listEmployeeHours(form.employee.data)
+    return render_template("employee/listHours.html", hourList=hourList, employee=Employee.getName(form.employee.data))

@@ -28,6 +28,14 @@ class Hour(db.Model):
 
 
     @staticmethod
+    def findBusyness(hour=0):
+        stmt = text("SELECT Busyness.name FROM Busyness JOIN Hour ON Hour.busyness_id = Busyness.id WHERE Hour.id=:hour").params(hour=hour)
+        res = db.engine.execute(stmt)
+
+        for row in res:
+            return row[0]
+
+    @staticmethod
     def findHour(date=0, start=0):
 
         stmt = text("SELECT Hour.id FROM Hour WHERE Hour.date = :date AND Hour.start = :start").params(date=date, start=start)
@@ -41,13 +49,9 @@ class Hour(db.Model):
 
         stmt = text("SELECT Hour.id, Hour.date, Hour.start, Busyness.laakareita, Busyness.sairaanhoitajia, Busyness.perushoitajia FROM Hour JOIN Busyness ON Busyness.id = Hour.busyness_id")
         res = db.engine.execute(stmt)
-        print("test3")
         response = []
         for row in res:
-            print("test4")
-            print(row[0])
             employees = Hour.findEmployees(row[0])
-            print(employees)
             l = row[3] - employees["l"]
             s = row[4] - employees["s"]
             if l < 0:
@@ -59,19 +63,15 @@ class Hour(db.Model):
                 response.append({"date":row[1], "time":row[2], "l":l, "s":s, "p":p})
         return response
 
-    
+
     @staticmethod
     def missingEmployees(hour=0):
 
         stmt = text("SELECT Busyness.laakareita, Busyness.sairaanhoitajia, Busyness.perushoitajia FROM Hour JOIN Busyness ON Busyness.id = Hour.busyness_id WHERE Hour.id = :hour").params(hour=hour)
         res = db.engine.execute(stmt)
-        print("test3")
 
         for row in res:
-            print("test4")
-            print(row[0])
             employees = Hour.findEmployees(hour)
-            print(employees)
             l = row[0] - employees["l"]
             s = row[1] - employees["s"]
             if l < 0:
@@ -84,26 +84,19 @@ class Hour(db.Model):
 
     @staticmethod
     def findEmployees(hour=0):
-        print("test")
         stmt = text("SELECT COUNT(Employee.id) FROM Employee JOIN employee_hours ON Employee.id = employee_hours.employee_id JOIN Hour ON Hour.id = employee_hours.hour_id WHERE Employee.role = 'Lääkäri' AND Hour.id = :hour").params(hour=hour)
         res = db.engine.execute(stmt)
-        print("test2")
         for row in res:
-            print(row[0])
             l = row[0]
-            print(l)
         stmt = text("SELECT COUNT(Employee.id) FROM Employee JOIN employee_hours ON Employee.id = employee_hours.employee_id JOIN Hour ON Hour.id = employee_hours.hour_id WHERE Employee.role = 'Sairaanhoitaja' AND Hour.id = :hour").params(hour=hour)
         res = db.engine.execute(stmt)
         for row in res:
             s = row[0]
-            print(s)
         stmt = text("SELECT COUNT(Employee.id) FROM Employee JOIN employee_hours ON Employee.id = employee_hours.employee_id JOIN Hour ON Hour.id = employee_hours.hour_id WHERE Employee.role = 'Perushoitaja' AND Hour.id = :hour").params(hour=hour)
         res = db.engine.execute(stmt)
         for row in res:
             p = row[0]
-            print(p)
         response = {"l":l, "s":s, "p":p}
-        print(response)
         return response
 
     @staticmethod
@@ -135,9 +128,23 @@ class Hour(db.Model):
 
     @staticmethod
     def getTimes(date=0):
-        stmt = text("SELECT Hour.start FROM Hour WHERE Hour.date=:date").params(date=date)
+        stmt = text("SELECT Hour.start FROM Hour WHERE Hour.date=:date ORDER BY Hour.start").params(date=date)
         res = db.engine.execute(stmt)
         response = []
         for row in res:
             response.append(row[0])
+        return response
+
+    @staticmethod
+    def listEmployeeHours(employee):
+        stmt = text("SELECT DISTINCT Hour.date FROM Hour JOIN employee_hours ON employee_hours.hour_id = Hour.id JOIN Employee ON Employee.id = employee_hours.employee_id WHERE Employee.id = :employee ORDER BY Hour.date").params(employee=employee)
+        res = db.engine.execute(stmt)
+        response = []
+        for row in res:
+            times = []
+            stmt = text("SELECT Hour.start FROM Hour JOIN employee_hours ON employee_hours.hour_id = Hour.id JOIN Employee ON Employee.id = employee_hours.employee_id WHERE Employee.id = :employee AND Hour.date = :date ORDER BY Hour.start").params(date=row[0], employee=employee)
+            res2 = db.engine.execute(stmt)
+            for row2 in res2:
+                times.append(row2[0])
+            response.append({"date":row[0], "times":times})
         return response

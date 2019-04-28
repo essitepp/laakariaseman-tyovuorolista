@@ -8,7 +8,18 @@ from application.busyness.models import Busyness
 
 @app.route("/hour", methods=["GET"])
 def hour_index():
-    hours = Hour.query.all()
+    list = []
+    dateList = Hour.listDates()
+    for date in dateList:
+        hourList = []
+        hours = Hour.getTimes(date)
+        for hour in hours:
+            busyness = Hour.findBusyness(Hour.findHour(date, hour))
+            missing = Hour.missingEmployees(Hour.findHour(date, hour))
+            hourList.append({"time":hour, "busyness":busyness})
+        list.append({"date":date, "times":hourList})
+    return render_template("hour/list.html", hourList = list)
+    hours = Hour.query.order_by(Hour.date, Hour.start)
     hourList = []
     for hour in hours:
         hourList.append({"hour":hour, "busyness":hour.getBusyness(hour.busyness_id)})

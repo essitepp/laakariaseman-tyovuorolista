@@ -1,19 +1,17 @@
 {% extends "layout.html" %}
 
 {% block body %}
+<ul>
+{% for i in hourList %}
+  <li>{{ i.date }}</li>
   <table>
-    <tr> 
-      <th>Päivämäärä</th>
-      <th>Kellonaika</th>
-      <th>Kiireellisyysluokka</th>
-    </tr>
-    {% for h in hourList %}
+  {% for t in i.times %}
     <tr>
-      <td>{{ h.hour.date }}</td>
-      <td>{{ h.hour.start }}-{{ h.hour.start + 1 }}</td>
-      <td>{{ h.busyness }}</td>
+      <td>klo {{ t.time }}-{{ t.time + 1 }}</td>
+      <td>Kiireellisyys: {{ t.busyness }}</td>
     </tr>
-    {% endfor %}
- </table>  
-
+  {% endfor %}
+  </table>
+{% endfor %}
+</ul>
 {% endblock %}
