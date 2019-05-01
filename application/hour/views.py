@@ -26,25 +26,31 @@ def hour_index():
     return render_template("hour/list.html", hourList = hourList)
 
 
-@app.route("/hour/new/")
+@app.route("/hour/new/", methods=["GET"])
 def hour_form():
-    return render_template("hour/new.html", form = HourForm())
-
-
-@app.route("/hour/", methods=["GET", "POST"])
-def hour_create():
-    busyness_list=[(x.id, x.name) for x in Busyness.query.all()]
-    form = HourForm(request.form)
+    form = HourForm()
+    busyness_list = [(x.id, x.name) for x in Busyness.query.all()]
     form.busyness_id.choices = busyness_list
+    return render_template("hour/new.html", form = form)
 
+def form_selectField(form):
+    choices = [(x.id, x.name) for x in Busyness.query.all()]
+    form.busyness_id.choices = choices
+    return
+
+@app.route("/hour/", methods=["POST"])
+def hour_create():
+    form = HourForm(request.form)
+    form_selectField(form)
     if not form.validate():
         return render_template("hour/new.html", form = form)
 
     for time in range(form.start.data, form.end.data):
-        h = Hour(form.date.data, time)
-        h.busyness_id = form.busyness_id.data
-        db.session().add(h)
-        db.session().commit()
+        if not Hour.hourExists(form.date.data, time):
+            h = Hour(form.date.data, time)
+            h.busyness_id = form.busyness_id.data
+            db.session().add(h)
+    db.session().commit()
 
     return redirect(url_for("hour_index"))
 
@@ -53,12 +59,16 @@ def missingEmployees_index():
     list = []
     dateList = Hour.listDates()
     for date in dateList:
+        empty = True
         hourList = []
         hours = Hour.getTimes(date)
         for hour in hours:
             missing = Hour.missingEmployees(Hour.findHour(date, hour))
-            hourList.append({"time":hour, "employees":missing})
-        list.append({"date":date, "times":hourList})
+            if missing["l"] > 0 or missing["s"] > 0 or missing["p"] > 0:
+                hourList.append({"time":hour, "employees":missing})
+                empty = False
+        if not empty:
+            list.append({"date":date, "times":hourList, "empty":empty})
     return render_template("hour/missingEmployees.html", missing_employees=list)
 
 @app.route("/shifts/", methods=["GET", "POST"])

@@ -6,17 +6,21 @@
 
 <ul>
 {% for i in missing_employees %}
+  {% if true %}
   <li>{{ i.date }}</li>
   <table>
   {% for t in i.times %}
+  {% if t.employees is defined %}
     <tr>
       <td>klo {{ t.time }}-{{ t.time + 1 }}</td>
       <td>lääkärit: {{ t.employees.l }}</td>
       <td>sairaanhoitajat: {{ t.employees.s }}</td>
       <td>perushoitajat: {{ t.employees.p }}</td>
     </tr>
+  {% endif %}
   {% endfor %}
   </table>
+{% endif %}
 {% endfor %}
 </ul>
 {% else %}

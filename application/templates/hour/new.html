@@ -65,6 +65,13 @@
       <td>
         {{ form.busyness_id }}
       </td>
+      <td>
+        <ul>
+          {% for error in form.busyness_id.errors %}
+          <li>{{ error }}</li>
+          {% endfor %}
+        </ul>
+      </td>
     </tr>
     <tr>
       <td>

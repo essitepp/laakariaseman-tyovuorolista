@@ -56,9 +56,11 @@ class Hour(db.Model):
             s = row[4] - employees["s"]
             if l < 0:
                 s = s + l
+                l = 0
             p = row[5] - employees["p"]
             if s < 0:
                 p = p + s
+                s = 0
             if l > 0 or s > 0 or p > 0:
                 response.append({"date":row[1], "time":row[2], "l":l, "s":s, "p":p})
         return response
@@ -76,9 +78,13 @@ class Hour(db.Model):
             s = row[1] - employees["s"]
             if l < 0:
                 s = s + l
+                l = 0
             p = row[2] - employees["p"]
             if s < 0:
                 p = p + s
+                s = 0
+            if p < 0:
+               p = 0
             response = {"l":l, "s":s, "p":p}
         return response
 
@@ -148,3 +154,12 @@ class Hour(db.Model):
                 times.append(row2[0])
             response.append({"date":row[0], "times":times})
         return response
+
+    @staticmethod
+    def hourExists(date, time):
+        stmt = text("SELECT COUNT(*) FROM Hour WHERE Hour.date=:date AND Hour.start = :time").params(date=date, time=time)
+        res = db.engine.execute(stmt)
+        for row in res:
+            if row[0] > 0:
+                return True
+        return False
