@@ -26,7 +26,8 @@ Järjestelmän toiminnot:
 ## Dokumentaatio
 
 [Käyttötapaukset](https://github.com/essitepp/laakariaseman-tyovuorolista/blob/master/documentation/usecases.md)  
-[Tietokantakaavio](https://github.com/essitepp/laakariaseman-tyovuorolista/blob/master/documentation/diagram.png)
+[Tietokantakaavio](https://github.com/essitepp/laakariaseman-tyovuorolista/blob/master/documentation/diagram.png)  
+[Jatkokehitys](https://github.com/essitepp/laakariaseman-tyovuorolista/blob/master/documentation/futureImprovements.png)
 
 
 ## Sovellus Herokussa
