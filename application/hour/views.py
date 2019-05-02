@@ -27,6 +27,7 @@ def hour_index():
 
 
 @app.route("/hour/new/", methods=["GET"])
+@login_required
 def hour_form():
     form = HourForm()
     busyness_list = [(x.id, x.name) for x in Busyness.query.all()]
@@ -39,6 +40,7 @@ def form_selectField(form):
     return
 
 @app.route("/hour/", methods=["POST"])
+@login_required
 def hour_create():
     form = HourForm(request.form)
     form_selectField(form)

@@ -15,10 +15,12 @@ def employee_index():
 
 
 @app.route("/employee/new/")
+@login_required
 def employee_form():
     return render_template("employee/new.html", form = EmployeeForm())
 
 @app.route("/employee/", methods=["POST"])
+@login_required
 def employee_create():
     form = EmployeeForm(request.form)
 
@@ -32,9 +34,10 @@ def employee_create():
     return redirect(url_for("employee_index"))
 
 @app.route("/employee/addhours/")
+@login_required
 def employee_hourform():
     form = EmployeeHourForm()
-    choices = [(x.id, x.name) for x in Employee.query.all()]
+    choices = [(x.id, x.name + ", " + x.role) for x in Employee.query.all()]
     form.employee.choices = choices
     return render_template("employee/addHours.html", form = form)
 
@@ -44,6 +47,7 @@ def hourform_selectField(form):
     return
 
 @app.route("/employee/hours", methods=["POST"])
+@login_required
 def employee_addHours():
     form = EmployeeHourForm(request.form)
     hourform_selectField(form)
@@ -83,11 +87,13 @@ def employee_listHours():
     return render_template("employee/listHours.html", hourList=hourList, employee=Employee.getName(form.employee.data))
 
 @app.route("/employee/edit/<employee_id>/", methods=["GET", "POST"])
+@login_required
 def employee_edit(employee_id):
     employee = Employee.query.get(employee_id)
     return render_template("employee/edit.html", form=EmployeeEditForm(obj=employee), employee_id=employee_id)
 
 @app.route("/employee/<employee_id>/", methods=["POST"])
+@login_required
 def employee_save(employee_id):
     form = EmployeeEditForm(request.form)
 
@@ -103,6 +109,7 @@ def employee_save(employee_id):
     return redirect(url_for("employee_index"))
 
 @app.route("/employee/delete/<employee_id>/", methods=["GET", "POST"])
+@login_required
 def employee_delete(employee_id):
     e = Employee.query.get(employee_id)
     db.session().delete(e)
