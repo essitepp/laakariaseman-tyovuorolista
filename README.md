@@ -25,6 +25,7 @@ Järjestelmän toiminnot:
 
 ## Dokumentaatio
 
+[Asennus- ja Käyttöohjeet](https://github.com/essitepp/laakariaseman-tyovuorolista/blob/master/documentation/manual.md)  
 [Käyttötapaukset](https://github.com/essitepp/laakariaseman-tyovuorolista/blob/master/documentation/usecases.md)  
 [Tietokantakaavio](https://github.com/essitepp/laakariaseman-tyovuorolista/blob/master/documentation/diagram.png)  
 [Jatkokehitys](https://github.com/essitepp/laakariaseman-tyovuorolista/blob/master/documentation/futureImprovements.md)
