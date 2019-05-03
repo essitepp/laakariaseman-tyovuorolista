@@ -6,7 +6,7 @@ Järjestelmällä voidaan laatia lääkäriaseman työvuorolistoja. Lääkärias
 
 
 
-Järjestelmän toiminnot:
+Järjestelmän toimintoja:
 
 - Kirjautuminen
 
