@@ -22,7 +22,7 @@ def hour_index():
     hours = Hour.query.order_by(Hour.date, Hour.start)
     hourList = []
     for hour in hours:
-        hourList.append({"hour":hour, "busyness":hour.getBusyness(hour.busyness_id)})
+        hourList.append({"hour":hour, "busyness":hour.get_name()})
     return render_template("hour/list.html", hourList = hourList)
 
 

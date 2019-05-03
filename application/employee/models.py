@@ -24,7 +24,7 @@ class Employee(db.Model):
         self.hoursPerDay = hoursPerDay
         self.hoursPerWeek = hoursPerWeek
 
-    def findHours(employee=0):
+    def findHours(employee):
 
         stmt = text("SELECT Hour.date, Hour.start FROM Employee JOIN employee_hours ON Employee.id = employee_hours.employee_id JOIN Hour ON Hour.id = employee_hours.hour_id WHERE Employee.id = :employee").params(employee=employee)
         res = db.engine.execute(stmt)

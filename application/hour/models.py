@@ -17,14 +17,6 @@ class Hour(db.Model):
         self.date = date
         self.start = start
 
-    @staticmethod
-    def getBusyness(busyness=0):
-
-        stmt = text("SELECT Busyness.name FROM Busyness WHERE Busyness.id = :busyness").params(busyness=busyness)
-        res = db.engine.execute(stmt)
-
-        for row in res:
-            return row[0]
 
 
     @staticmethod
@@ -43,28 +35,6 @@ class Hour(db.Model):
 
         for row in res:
             return row[0]
-
-    @staticmethod
-    def hoursMissingEmployees():
-
-        stmt = text("SELECT Hour.id, Hour.date, Hour.start, Busyness.laakareita, Busyness.sairaanhoitajia, Busyness.perushoitajia FROM Hour JOIN Busyness ON Busyness.id = Hour.busyness_id")
-        res = db.engine.execute(stmt)
-        response = []
-        for row in res:
-            employees = Hour.findEmployees(row[0])
-            l = row[3] - employees["l"]
-            s = row[4] - employees["s"]
-            if l < 0:
-                s = s + l
-                l = 0
-            p = row[5] - employees["p"]
-            if s < 0:
-                p = p + s
-                s = 0
-            if l > 0 or s > 0 or p > 0:
-                response.append({"date":row[1], "time":row[2], "l":l, "s":s, "p":p})
-        return response
-
 
     @staticmethod
     def missingEmployees(hour=0):
@@ -163,3 +133,5 @@ class Hour(db.Model):
             if row[0] > 0:
                 return True
         return False
+
+

@@ -19,3 +19,4 @@ class Busyness(db.Model):
 
     def get_name(self):
         return self.name
+
