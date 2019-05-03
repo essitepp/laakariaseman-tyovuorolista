@@ -11,9 +11,9 @@
 ### Heroku
 
 - Saadaksesi sovelluksen toiminaan herokussa aja seuraavat komennot:
- - heroku create sovelluksen-nimi
- - git remote add heroku https://git.heroku.com/sovelluksen-nimi.git
- - git push heroku master
+  - heroku create sovelluksen-nimi
+  - git remote add heroku https://git.heroku.com/sovelluksen-nimi.git
+  - git push heroku master
 
 
 # Käyttöohje
